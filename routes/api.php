@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,10 @@ Route::put('/edit-blog', [BlogController::class, 'EditBlogs']);  //Edit blogs
 Route::get('/individual-user-info', [UserController::class, 'signleUserInfo']);
 Route::get('/top5blogs', [BlogController::class, 'top5Blog']);
 
+// Favorites Group
+Route::post('/favorite', [FavoriteController::class, 'create']);
+Route::delete('/favorite', [FavoriteController::class, 'delete']);
+
 // Authentication Routers
 Route::group([
 
@@ -63,5 +68,6 @@ Route::group([
     Route::get('/userlist', 'UserController@userList'); //User List getting
     Route::get('/individual-blogs', [BlogController::class, 'individualBlogs']); //user blogs
 
-
+    // Favorites group
+    Route::get('/favorite', [FavoriteController::class, 'view']);
 });
